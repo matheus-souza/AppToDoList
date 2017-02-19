@@ -10,5 +10,20 @@
     tools:context="br.com.matheush.apptodolist.activity.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <EditText
+            android:id="@+id/et_nova_tarefa_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapSentences|textAutoComplete"
+            android:hint="Nova tarefa" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_tarefas_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
