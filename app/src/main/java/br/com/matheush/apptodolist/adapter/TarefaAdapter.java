@@ -11,12 +11,14 @@ import java.util.List;
 
 import br.com.matheush.apptodolist.R;
 import br.com.matheush.apptodolist.model.Tarefa;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by matheush on 18/02/17.
  */
 
-public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.TarefaViewHolder> {
+public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder> {
     private Context context;
     private List<Tarefa> tarefaList;
     private OnItemClickListener onItemClicked;
@@ -35,16 +37,16 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.TarefaView
     }
 
     @Override
-    public TarefaViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.content_tarefa_row, viewGroup, false);
 
-        TarefaViewHolder holder = new TarefaViewHolder(view);
+        ViewHolder holder = new ViewHolder(view);
 
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(final TarefaViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         //Atualiza a view
         Tarefa t = tarefaList.get(position);
 
@@ -81,15 +83,16 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.TarefaView
         public boolean onItemLongClicked(int position);
     }
 
-    public class TarefaViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.card_tv_tarefa)
         TextView tvTarefa;
+        @BindView(R.id.card_tv_data_hora)
         TextView tvDataHora;
 
-        public TarefaViewHolder(View view) {
+        public ViewHolder(View view) {
             super(view);
 
-            tvTarefa = (TextView) view.findViewById(R.id.card_tv_tarefa);
-            tvDataHora = (TextView) view.findViewById(R.id.card_tv_data_hora);
+            ButterKnife.bind(this, view);
         }
     }
 }
