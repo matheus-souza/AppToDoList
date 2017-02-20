@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
+    private TarefaAdapter tarefaAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected TarefaAdapter.OnItemClickListener onItemClickListener() {
+        return new TarefaAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClicked(View view, int position) {
+
+            }
+        };
+    }
+
+    protected TarefaAdapter.OnItemLongClickListener onItemLongClickListener() {
+        return new TarefaAdapter.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClicked(int position) {
+                return true;
+            }
+        };
+    }
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
