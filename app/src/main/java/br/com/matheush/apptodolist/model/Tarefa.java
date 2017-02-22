@@ -11,14 +11,14 @@ import io.realm.annotations.PrimaryKey;
 
 public class Tarefa extends RealmObject{
     @PrimaryKey
-    private long id;
+    private int id;
     private String tarefa;
     private Date dataHora;
 
     public Tarefa() {
     }
 
-    public Tarefa(long id, String tarefa, Date dataHora) {
+    public Tarefa(int id, String tarefa, Date dataHora) {
         this.id = id;
         this.tarefa = tarefa;
         this.dataHora = dataHora;
@@ -28,7 +28,7 @@ public class Tarefa extends RealmObject{
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
