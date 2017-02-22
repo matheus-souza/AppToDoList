@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
         validator.setValidationListener(this);
 
         tarefaList = new LinkedList<>();
-
+/*
         Realm.init(getApplicationContext());
         realm = Realm.getDefaultInstance();
-
+*/
         rvTarefas.setLayoutManager(new LinearLayoutManager(this));
         rvTarefas.addItemDecoration(new DividerItemDecoration(MainActivity.this, DividerItemDecoration.VERTICAL));
         rvTarefas.setItemAnimator(new DefaultItemAnimator());
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
     }
 
     public void atualizaLista() {
-        RealmResults<Tarefa> tarefas = realm.where(Tarefa.class).findAll();
+        RealmResults<Tarefa> tarefas = MyApplication.REALM.where(Tarefa.class).findAll();
         tarefaList.clear();
         tarefaList.addAll(tarefas);
         tarefaAdapter.notifyDataSetChanged();
