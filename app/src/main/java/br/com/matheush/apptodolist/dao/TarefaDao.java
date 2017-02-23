@@ -19,9 +19,8 @@ public class TarefaDao implements IDao<Tarefa> {
     public void setObjeto(Tarefa objeto) {
         realm.beginTransaction();
 
-        Tarefa tarefa = realm.createObject(Tarefa.class);
+        Tarefa tarefa = realm.createObject(Tarefa.class, idGenerator(Tarefa.class, "id"));
 
-        tarefa.setId(idGenerator(Tarefa.class, "id"));
         tarefa.setTarefa(objeto.getTarefa());
         tarefa.setDataHora(objeto.getDataHora());
 
@@ -35,7 +34,6 @@ public class TarefaDao implements IDao<Tarefa> {
 
     @Override
     public List<Tarefa> getObjetos() {
-        return null;
     }
 
     @Override
