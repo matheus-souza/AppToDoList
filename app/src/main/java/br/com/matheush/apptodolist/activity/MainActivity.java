@@ -107,6 +107,33 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
     protected TarefaAdapter.OnItemLongClickListener onItemLongClickListener() {
         return new TarefaAdapter.OnItemLongClickListener() {
             @Override
+            public boolean onItemLongClicked(final int position) {
+                CharSequence opcoes[] = new CharSequence[] {"Visualizar", "Alterar", "Deletar"};
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Opções da tarefa");
+                builder.setItems(opcoes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "Clicou " + which, Toast.LENGTH_SHORT).show();
+
+                        switch (which) {
+                            case 0:
+                                //Abre activity vizualização
+                                break;
+                            case 1:
+                                //Abre activity alteração
+                                break;
+                            case 2:
+                                Tarefa tarefa = tarefaList.get(position);
+                                new TarefaDao().deleteObjeto(tarefa);
+                                atualizaLista();
+                                break;
+                        }
+
+                    }
+                }).show();
+
                 return true;
             }
         };
