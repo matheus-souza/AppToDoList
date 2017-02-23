@@ -29,7 +29,14 @@ public class TarefaDao implements IDao<Tarefa> {
 
     @Override
     public void deleteObjeto(Tarefa objeto) {
-
+        //realm.beginTransaction();
+        final Tarefa tarefa = realm.where(Tarefa.class).equalTo("id", objeto.getId()).findFirst();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                tarefa.deleteFromRealm();
+            }
+        });
     }
 
     @Override
