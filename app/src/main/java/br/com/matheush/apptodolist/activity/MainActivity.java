@@ -1,7 +1,9 @@
 package br.com.matheush.apptodolist.activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
@@ -24,11 +26,13 @@ import java.util.List;
 import br.com.matheush.apptodolist.MyApplication;
 import br.com.matheush.apptodolist.R;
 import br.com.matheush.apptodolist.adapter.TarefaAdapter;
+import br.com.matheush.apptodolist.dao.TarefaDao;
 import br.com.matheush.apptodolist.model.Tarefa;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class MainActivity extends AppCompatActivity implements Validator.ValidationListener {
 
@@ -78,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
     }
 
     public void atualizaLista() {
-        RealmResults<Tarefa> tarefas = MyApplication.REALM.where(Tarefa.class).findAll();
+        RealmResults<Tarefa> tarefas = MyApplication.REALM.where(Tarefa.class).findAllSorted("id", Sort.DESCENDING);
         tarefaList.clear();
         tarefaList.addAll(tarefas);
         tarefaAdapter.notifyDataSetChanged();
@@ -103,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
     protected TarefaAdapter.OnItemLongClickListener onItemLongClickListener() {
         return new TarefaAdapter.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClicked(int position) {
                 return true;
             }
         };
@@ -133,7 +136,13 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
 
     @Override
     public void onValidationSucceeded() {
+        Tarefa tarefa = new Tarefa();
+        tarefa.setTarefa(etNovaTarefa.getText().toString());
 
+        TarefaDao tarefaDao = new TarefaDao();
+        tarefaDao.setObjeto(tarefa);
+
+        atualizaLista();
     }
 
     @Override
