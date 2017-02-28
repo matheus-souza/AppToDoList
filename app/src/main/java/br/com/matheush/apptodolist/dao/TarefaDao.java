@@ -2,11 +2,11 @@ package br.com.matheush.apptodolist.dao;
 
 import android.util.Log;
 
-import java.util.List;
-
 import br.com.matheush.apptodolist.MyApplication;
 import br.com.matheush.apptodolist.model.Tarefa;
 import io.realm.Realm;
+import io.realm.RealmResults;
+import io.realm.Sort;
 
 /**
  * Created by matheush on 21/02/17.
@@ -40,7 +40,21 @@ public class TarefaDao implements IDao<Tarefa> {
     }
 
     @Override
-    public List<Tarefa> getObjetos() {
+    public void deleteObjetos() {
+        final RealmResults<Tarefa> results = realm.where(Tarefa.class).findAll();
+
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                results.deleteAllFromRealm();
+            }
+        });
+    }
+
+    @Override
+    public RealmResults<Tarefa> getObjetos() {
+        //RealmResults<Tarefa> results = realm.where(Tarefa.class).findAllSorted("id", Sort.DESCENDING);
+        return realm.where(Tarefa.class).findAllSorted("id", Sort.DESCENDING);
     }
 
     @Override

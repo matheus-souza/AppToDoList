@@ -31,8 +31,6 @@ import br.com.matheush.apptodolist.model.Tarefa;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
-import io.realm.RealmResults;
-import io.realm.Sort;
 
 public class MainActivity extends AppCompatActivity implements Validator.ValidationListener {
 
@@ -82,9 +80,9 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
     }
 
     public void atualizaLista() {
-        RealmResults<Tarefa> tarefas = MyApplication.REALM.where(Tarefa.class).findAllSorted("id", Sort.DESCENDING);
+        //RealmResults<Tarefa> tarefas = MyApplication.REALM.where(Tarefa.class).findAllSorted("id", Sort.DESCENDING);
         tarefaList.clear();
-        tarefaList.addAll(tarefas);
+        tarefaList.addAll(new TarefaDao().getObjetos());
         tarefaAdapter.notifyDataSetChanged();
     }
 
@@ -115,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
                 builder.setItems(opcoes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "Clicou " + which, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "Clicou " + which, Toast.LENGTH_SHORT).show();
 
                         switch (which) {
                             case 0:
@@ -125,9 +123,17 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
                                 //Abre activity alteração
                                 break;
                             case 2:
-                                Tarefa tarefa = tarefaList.get(position);
-                                new TarefaDao().deleteObjeto(tarefa);
-                                atualizaLista();
+                                new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle("Aviso!")
+                                        .setMessage("Deseja apagar a tarefa " + tarefaList.get(position).getTarefa() + "?")
+                                        .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                Tarefa tarefa = tarefaList.get(position);
+                                                new TarefaDao().deleteObjeto(tarefa);
+                                                atualizaLista();
+                                            }
+                                        }).setNegativeButton("Não", null).show();
                                 break;
                         }
 
@@ -155,6 +161,8 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_excluir_todos) {
+            new TarefaDao().deleteObjetos();
+            atualizaLista();
             return true;
         }
 
