@@ -59,7 +59,7 @@ public class TarefaDao implements IDao<Tarefa> {
 
     @Override
     public Tarefa getObjeto(long id) {
-        return null;
+        return realm.where(Tarefa.class).equalTo("id", id).findFirst();
     }
 
     @Override

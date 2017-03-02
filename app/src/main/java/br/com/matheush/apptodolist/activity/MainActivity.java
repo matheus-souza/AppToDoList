@@ -1,6 +1,7 @@
 package br.com.matheush.apptodolist.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -10,6 +11,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +36,7 @@ import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity implements Validator.ValidationListener {
 
+    private static final String TAG = "LogX_Main";
     @BindView(R.id.fab)
     FloatingActionButton fab;
     @NotEmpty(message = MyApplication.MSG_VAZIO)
@@ -97,7 +100,15 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
         return new TarefaAdapter.OnItemClickListener() {
             @Override
             public void onItemClicked(View view, int position) {
+                Log.d(TAG, "Item lista: " + position);
 
+                long index = tarefaList.get(position).getId();
+
+                Log.d(TAG, "ID item: " + index);
+
+                Intent intent = new Intent(MainActivity.this, DetalheActivity.class);
+                intent.putExtra("index", index);
+                startActivity(intent);
             }
         };
     }
