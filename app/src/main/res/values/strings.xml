@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">AppToDoList</string>
-    <string name="action_excluir_todos">Excluit todos</string>
+
+    <!-- Actovity Titles -->
     <string name="title_activity_detalhe">DetalheActivity</string>
+
+    <!-- Menus -->
+    <string name="action_excluir_todos">Excluit todos</string>
+    <string name="action_editar_tarefa">Editar tarefa</string>
+    <string name="action_excluir_tarefa">Excluir tarefa</string>
 </resources>

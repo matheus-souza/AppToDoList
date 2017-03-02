@@ -20,6 +20,7 @@ public class DetalheActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalhe);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         index = intent.getLongExtra("index", 0);;

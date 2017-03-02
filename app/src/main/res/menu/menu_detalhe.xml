@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.com.matheush.apptodolist.activity.DetalheActivity">
+
+    <item
+        android:id="@+id/action_editar_item"
+        android:icon="@drawable/ic_edit"
+        android:orderInCategory="100"
+        android:title="@string/action_editar_tarefa"
+        app:showAsAction="always|collapseActionView" />
+
+    <item
+        android:id="@+id/action_excluir_item"
+        android:icon="@drawable/ic_delete"
+        android:orderInCategory="100"
+        android:title="@string/action_excluir_tarefa"
+        app:showAsAction="always|collapseActionView" />
+</menu>
