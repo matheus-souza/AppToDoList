@@ -13,6 +13,8 @@ import io.realm.Sort;
  */
 
 public class TarefaDao implements IDao<Tarefa> {
+    public static final String TAG = "LogX_TarefaDao";
+
     private Realm realm = MyApplication.REALM;
 
     @Override
@@ -22,7 +24,8 @@ public class TarefaDao implements IDao<Tarefa> {
         Tarefa tarefa = realm.createObject(Tarefa.class, idGenerator(Tarefa.class, "id"));
 
         tarefa.setTarefa(objeto.getTarefa());
-        tarefa.setDataHora(objeto.getDataHora());
+        tarefa.setData(objeto.getData());
+        tarefa.setHora(objeto.getHora());
 
         realm.commitTransaction();
     }
@@ -58,7 +61,7 @@ public class TarefaDao implements IDao<Tarefa> {
     }
 
     @Override
-    public Tarefa getObjeto(long id) {
+    public Tarefa getObjeto(int id) {
         return realm.where(Tarefa.class).equalTo("id", id).findFirst();
     }
 
@@ -67,7 +70,7 @@ public class TarefaDao implements IDao<Tarefa> {
         try {
             return realm.where(classe).max(campo).intValue()+1;
         } catch (Exception e) {
-            Log.d("LogX", String.valueOf(e));
+            Log.d(TAG, String.valueOf(e));
             return 0;
         }
     }

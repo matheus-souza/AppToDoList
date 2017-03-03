@@ -31,7 +31,6 @@ import br.com.matheush.apptodolist.dao.TarefaDao;
 import br.com.matheush.apptodolist.model.Tarefa;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity implements Validator.ValidationListener {
 
@@ -47,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
     private TarefaAdapter tarefaAdapter;
     private Validator validator;
     private List<Tarefa> tarefaList;
-    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

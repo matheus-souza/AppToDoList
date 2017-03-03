@@ -51,7 +51,12 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
         Tarefa t = tarefaList.get(position);
 
         holder.tvTarefa.setText(t.getTarefa());
-        holder.tvDataHora.setText(t.getDataHoraString());
+
+        if (!t.getData().equals("") && !t.getHora().equals("")) {
+            holder.tvDataHora.setText(t.getData() + " às " + t.getHora());
+        } else {
+            holder.tvDataHora.setText("");
+        }
 
         //Click
         if (onItemClicked != null) {
