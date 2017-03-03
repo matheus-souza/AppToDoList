@@ -8,4 +8,6 @@
     <string name="action_excluir_todos">Excluit todos</string>
     <string name="action_editar_tarefa">Editar tarefa</string>
     <string name="action_excluir_tarefa">Excluir tarefa</string>
+    <string name="tarefa_title">Tarefa</string>
+    <string name="data_hora_titulo">Data e Hora</string>
 </resources>
