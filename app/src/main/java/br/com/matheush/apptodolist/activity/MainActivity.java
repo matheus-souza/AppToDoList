@@ -11,7 +11,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -100,14 +99,8 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
         return new TarefaAdapter.OnItemClickListener() {
             @Override
             public void onItemClicked(View view, int position) {
-                Log.d(TAG, "Item lista: " + position);
-
-                long index = tarefaList.get(position).getId();
-
-                Log.d(TAG, "ID item: " + index);
-
                 Intent intent = new Intent(MainActivity.this, DetalheActivity.class);
-                intent.putExtra("index", index);
+                intent.putExtra("index", tarefaList.get(position).getId());
                 startActivity(intent);
             }
         };
@@ -184,6 +177,8 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
     public void onValidationSucceeded() {
         Tarefa tarefa = new Tarefa();
         tarefa.setTarefa(etNovaTarefa.getText().toString());
+        tarefa.setData("");
+        tarefa.setHora("");
 
         TarefaDao tarefaDao = new TarefaDao();
         tarefaDao.setObjeto(tarefa);

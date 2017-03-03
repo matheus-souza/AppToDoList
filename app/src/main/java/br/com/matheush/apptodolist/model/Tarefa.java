@@ -1,7 +1,5 @@
 package br.com.matheush.apptodolist.model;
 
-import java.util.Date;
-
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -13,18 +11,20 @@ public class Tarefa extends RealmObject{
     @PrimaryKey
     private int id;
     private String tarefa;
-    private Date dataHora;
+    private String data;
+    private String hora;
 
     public Tarefa() {
     }
 
-    public Tarefa(int id, String tarefa, Date dataHora) {
+    public Tarefa(int id, String tarefa, String data, String hora) {
         this.id = id;
         this.tarefa = tarefa;
-        this.dataHora = dataHora;
+        this.data = data;
+        this.hora = hora;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -40,16 +40,30 @@ public class Tarefa extends RealmObject{
         this.tarefa = tarefa;
     }
 
-    public Date getDataHora() {
-        return dataHora;
+    public String getData() {
+        return data;
     }
 
-    public String getDataHoraString() {
-        return "teste";
+    public void setData(String data) {
+        this.data = data;
     }
 
-    public void setDataHora(Date dataHora) {
-        this.dataHora = dataHora;
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    @Override
+    public String toString() {
+        return "Tarefa{" +
+                "id=" + id +
+                ", tarefa='" + tarefa + '\'' +
+                ", data='" + data + '\'' +
+                ", hora='" + hora + '\'' +
+                '}';
     }
 
     @Override
@@ -61,24 +75,17 @@ public class Tarefa extends RealmObject{
 
         if (id != tarefa1.id) return false;
         if (tarefa != null ? !tarefa.equals(tarefa1.tarefa) : tarefa1.tarefa != null) return false;
-        return dataHora != null ? dataHora.equals(tarefa1.dataHora) : tarefa1.dataHora == null;
+        if (data != null ? !data.equals(tarefa1.data) : tarefa1.data != null) return false;
+        return hora != null ? hora.equals(tarefa1.hora) : tarefa1.hora == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
+        int result = id;
         result = 31 * result + (tarefa != null ? tarefa.hashCode() : 0);
-        result = 31 * result + (dataHora != null ? dataHora.hashCode() : 0);
+        result = 31 * result + (data != null ? data.hashCode() : 0);
+        result = 31 * result + (hora != null ? hora.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Tarefa{" +
-                "id=" + id +
-                ", tarefa='" + tarefa + '\'' +
-                ", dataHora=" + dataHora +
-                '}';
     }
 }
