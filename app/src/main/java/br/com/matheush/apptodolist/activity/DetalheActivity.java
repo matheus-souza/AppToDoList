@@ -77,7 +77,9 @@ public class DetalheActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.action_editar_item:
-                //chama activity de edição
+                Intent intent = new Intent(DetalheActivity.this, EdicaoActivity.class);
+                intent.putExtra("index", tarefa.getId());
+                startActivity(intent);
                 return true;
             case R.id.action_excluir_item:
                 new TarefaDao().deleteObjeto(tarefa);
