@@ -1,13 +1,18 @@
 <resources>
     <string name="app_name">AppToDoList</string>
 
-    <!-- Actovity Titles -->
-    <string name="title_activity_detalhe">DetalheActivity</string>
+    <!-- Activity Titles -->
+    <string name="title_activity_detalhe">Detalhes</string>
+    <string name="title_activity_edicao">Editar tarefa</string>
+
 
     <!-- Menus -->
-    <string name="action_excluir_todos">Excluit todos</string>
+    <string name="action_excluir_todos">Excluir todos</string>
     <string name="action_editar_tarefa">Editar tarefa</string>
     <string name="action_excluir_tarefa">Excluir tarefa</string>
+    <string name="action_salvar_tarefa">Salvar tarefa</string>
+
+    <!-- Outros Textos -->
     <string name="tarefa_title">Tarefa</string>
     <string name="data_hora_titulo">Data e Hora</string>
 </resources>

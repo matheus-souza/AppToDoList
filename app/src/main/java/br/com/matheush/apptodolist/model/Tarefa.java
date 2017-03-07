@@ -7,7 +7,7 @@ import io.realm.annotations.PrimaryKey;
  * Created by matheush on 18/02/17.
  */
 
-public class Tarefa extends RealmObject{
+public class Tarefa extends RealmObject {
     @PrimaryKey
     private int id;
     private String tarefa;
