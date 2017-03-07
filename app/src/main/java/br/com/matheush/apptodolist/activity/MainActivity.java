@@ -116,10 +116,13 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Toast.makeText(getApplicationContext(), "Clicou " + which, Toast.LENGTH_SHORT).show();
-
+                        Intent intent;
+                        int index = tarefaList.get(position).getId();
                         switch (which) {
                             case 0:
-                                //Abre activity vizualização
+                                intent = new Intent(MainActivity.this, DetalheActivity.class);
+                                intent.putExtra("index", index);
+                                startActivity(intent);
                                 break;
                             case 1:
                                 //Abre activity alteração
