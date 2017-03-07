@@ -125,7 +125,9 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
                                 startActivity(intent);
                                 break;
                             case 1:
-                                //Abre activity alteração
+                                intent = new Intent(MainActivity.this, EdicaoActivity.class);
+                                intent.putExtra("index", index);
+                                startActivity(intent);
                                 break;
                             case 2:
                                 new AlertDialog.Builder(MainActivity.this)
