@@ -1,5 +1,6 @@
 package br.com.matheush.apptodolist.activity;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import android.widget.EditText;
 
 import br.com.matheush.apptodolist.R;
 import br.com.matheush.apptodolist.dao.TarefaDao;
+import br.com.matheush.apptodolist.fragment.DatePickerFragment;
+import br.com.matheush.apptodolist.fragment.TimePickerFragment;
 import br.com.matheush.apptodolist.model.Tarefa;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,15 +47,20 @@ public class EdicaoActivity extends AppCompatActivity {
         Log.d(TAG, tarefa.toString());
 
         etTarefa.setText(tarefa.getTarefa());
+        etTarefa.setSelection(tarefa.getTarefa().length());
+
+        etHora.setFocusable(false);
         if (!tarefa.getHora().equals("")) {
             etHora.setText(tarefa.getHora());
         } else {
-            etHora.setText("Hora não definada");
+            etHora.setText(getResources().getText(R.string.clique_definir));
         }
+
+        etData.setFocusable(false);
         if (!tarefa.getData().equals("")) {
             etData.setText(tarefa.getData());
         } else {
-            etData.setText("Data não definada");
+            etData.setText(getResources().getText(R.string.clique_definir));
         }
 
     }
@@ -80,12 +88,17 @@ public class EdicaoActivity extends AppCompatActivity {
 
     @OnClick({R.id.edicao_et_hora, R.id.edicao_et_data})
     public void onClick(View view) {
+        DialogFragment newFragment;
         switch (view.getId()) {
             case R.id.edicao_et_hora:
                 //chama fragment time picker
+                newFragment = new TimePickerFragment();
+                newFragment.show(getFragmentManager(),"TimePicker");
                 break;
             case R.id.edicao_et_data:
                 //chama fragment date picker
+                newFragment = new DatePickerFragment();
+                newFragment.show(getFragmentManager(),"Date Picker");
                 break;
         }
     }
