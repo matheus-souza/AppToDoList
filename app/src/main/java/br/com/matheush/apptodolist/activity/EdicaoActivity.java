@@ -1,8 +1,10 @@
 package br.com.matheush.apptodolist.activity;
 
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -79,8 +81,26 @@ public class EdicaoActivity extends AppCompatActivity {
                 Tarefa tarefaEditada = new Tarefa();
                 tarefaEditada.setId(tarefa.getId());
                 tarefaEditada.setTarefa(etTarefa.getText().toString());
+                tarefaEditada.setHora(etHora.getText().toString());
+                tarefaEditada.setData(etData.getText().toString());
+                tarefaEditada.setHoraConclusao(tarefa.getHoraConclusao());
+                tarefaEditada.setDataConclusao(tarefa.getDataConclusao());
+                tarefaEditada.setAtiva(tarefa.isAtiva());
 
-                finish();
+                if (tarefaEditada.hashCode() == tarefa.hashCode()) {
+                    finish();
+                    return true;
+                } else {
+                    new AlertDialog.Builder(EdicaoActivity.this)
+                            .setTitle("Atenção!")
+                            .setMessage("Deseja sair e descartar as alterações?")
+                            .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    finish();
+                                }
+                            }).setNegativeButton("Não", null).show();
+                }
                 return true;
             case R.id.action_salvar_item:
                 //salva item
