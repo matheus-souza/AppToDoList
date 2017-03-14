@@ -58,8 +58,13 @@ public class TarefaDao implements IDao<Tarefa> {
     }
 
     @Override
-    public void arualizaObjeto(Tarefa objeto) {
-        
+    public void atualizaObjeto(final Tarefa objeto) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.copyToRealmOrUpdate(objeto);
+            }
+        });
     }
 
     @Override

@@ -58,6 +58,12 @@ public class DetalheActivity extends AppCompatActivity {
         atualizaCampos();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        atualizaCampos();
+    }
+
     public void atualizaCampos() {
         tvTarefa.setText(tarefa.getTarefa());
         tvHora.setText(tarefa.getHora());

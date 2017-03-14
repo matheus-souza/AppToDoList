@@ -75,18 +75,18 @@ public class EdicaoActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Tarefa tarefaEditada = new Tarefa();
+        tarefaEditada.setId(tarefa.getId());
+        tarefaEditada.setTarefa(etTarefa.getText().toString());
+        tarefaEditada.setHora(etHora.getText().toString());
+        tarefaEditada.setData(etData.getText().toString());
+        tarefaEditada.setHoraConclusao(tarefa.getHoraConclusao());
+        tarefaEditada.setDataConclusao(tarefa.getDataConclusao());
+        tarefaEditada.setAtiva(tarefa.isAtiva());
+
         switch (item.getItemId()) {
             case android.R.id.home:
                 //verifica se tem alteração, pergunta e sai
-                Tarefa tarefaEditada = new Tarefa();
-                tarefaEditada.setId(tarefa.getId());
-                tarefaEditada.setTarefa(etTarefa.getText().toString());
-                tarefaEditada.setHora(etHora.getText().toString());
-                tarefaEditada.setData(etData.getText().toString());
-                tarefaEditada.setHoraConclusao(tarefa.getHoraConclusao());
-                tarefaEditada.setDataConclusao(tarefa.getDataConclusao());
-                tarefaEditada.setAtiva(tarefa.isAtiva());
-
                 if (tarefaEditada.hashCode() == tarefa.hashCode()) {
                     finish();
                     return true;
@@ -104,6 +104,9 @@ public class EdicaoActivity extends AppCompatActivity {
                 return true;
             case R.id.action_salvar_item:
                 //salva item
+                Log.d(TAG, "Tarefa editada: " + tarefaEditada.toString());
+                new TarefaDao().atualizaObjeto(tarefaEditada);
+                finish();
                 return true;
         }
 
