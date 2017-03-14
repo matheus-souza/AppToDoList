@@ -26,6 +26,9 @@ public class TarefaDao implements IDao<Tarefa> {
         tarefa.setTarefa(objeto.getTarefa());
         tarefa.setData(objeto.getData());
         tarefa.setHora(objeto.getHora());
+        tarefa.setDataConclusao(objeto.getDataConclusao());
+        tarefa.setHoraConclusao(objeto.getHoraConclusao());
+        tarefa.setAtiva(objeto.isAtiva());
 
         realm.commitTransaction();
     }
@@ -52,6 +55,11 @@ public class TarefaDao implements IDao<Tarefa> {
                 results.deleteAllFromRealm();
             }
         });
+    }
+
+    @Override
+    public void arualizaObjeto(Tarefa objeto) {
+        
     }
 
     @Override

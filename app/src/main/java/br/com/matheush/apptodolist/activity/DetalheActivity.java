@@ -3,10 +3,12 @@ package br.com.matheush.apptodolist.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,14 @@ public class DetalheActivity extends AppCompatActivity {
     TextView tvHora;
     @BindView(R.id.detalhe_tv_data)
     TextView tvData;
+    @BindView(R.id.detalhe_tv_titulo_conclusao)
+    TextView tvTituloConclusao;
+    @BindView(R.id.detalhe_tv_hora_conclusao)
+    TextView tvHoraConclusao;
+    @BindView(R.id.detalhe_tv_data_conclusao)
+    TextView tvDataConclusao;
+    @BindView(R.id.detalhe_card_conclusao)
+    CardView cardConclusao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,17 +60,15 @@ public class DetalheActivity extends AppCompatActivity {
 
     public void atualizaCampos() {
         tvTarefa.setText(tarefa.getTarefa());
+        tvHora.setText(tarefa.getHora());
+        tvData.setText(tarefa.getData());
 
-        if (!tarefa.getHora().equals("")) {
-            tvHora.setText(tarefa.getHora());
-        } else {
-            tvHora.setText("Hora não definida");
-        }
+        if (!tarefa.isAtiva()) {
+            tvTituloConclusao.setVisibility(View.VISIBLE);
+            cardConclusao.setVisibility(View.VISIBLE);
 
-        if (!tarefa.getData().equals("")) {
-            tvData.setText(tarefa.getData());
-        } else {
-            tvData.setText("Data não definida");
+            tvHoraConclusao.setText(tarefa.getHoraConclusao());
+            tvDataConclusao.setText(tarefa.getDataConclusao());
         }
     }
 

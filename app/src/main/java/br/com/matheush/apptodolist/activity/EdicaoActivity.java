@@ -53,14 +53,14 @@ public class EdicaoActivity extends AppCompatActivity {
         if (!tarefa.getHora().equals("")) {
             etHora.setText(tarefa.getHora());
         } else {
-            etHora.setText(getResources().getText(R.string.clique_definir));
+            etHora.setText(getResources().getText(R.string.nao_definida));
         }
 
         etData.setFocusable(false);
         if (!tarefa.getData().equals("")) {
             etData.setText(tarefa.getData());
         } else {
-            etData.setText(getResources().getText(R.string.clique_definir));
+            etData.setText(getResources().getText(R.string.nao_definida));
         }
 
     }
@@ -76,6 +76,10 @@ public class EdicaoActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 //verifica se tem alteração, pergunta e sai
+                Tarefa tarefaEditada = new Tarefa();
+                tarefaEditada.setId(tarefa.getId());
+                tarefaEditada.setTarefa(etTarefa.getText().toString());
+
                 finish();
                 return true;
             case R.id.action_salvar_item:

@@ -15,5 +15,6 @@
     <!-- Outros Textos -->
     <string name="tarefa_title">Tarefa</string>
     <string name="data_hora_titulo">Data e Hora</string>
-    <string name="clique_definir">Clique para definir</string>
+    <string name="nao_definida">Não definida</string>
+    <string name="conclusao_titulo">Conclusão</string>
 </resources>

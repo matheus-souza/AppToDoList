@@ -180,8 +180,11 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
     public void onValidationSucceeded() {
         Tarefa tarefa = new Tarefa();
         tarefa.setTarefa(etNovaTarefa.getText().toString());
-        tarefa.setData("");
-        tarefa.setHora("");
+        tarefa.setData("Não definida");
+        tarefa.setHora("Não definida");
+        tarefa.setDataConclusao("Não concluída");
+        tarefa.setHoraConclusao("Não concluída");
+        tarefa.setAtiva(true);
 
         TarefaDao tarefaDao = new TarefaDao();
         tarefaDao.setObjeto(tarefa);
