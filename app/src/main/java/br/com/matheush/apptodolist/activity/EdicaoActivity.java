@@ -93,7 +93,7 @@ public class EdicaoActivity extends AppCompatActivity {
                 } else {
                     new AlertDialog.Builder(EdicaoActivity.this)
                             .setTitle("Atenção!")
-                            .setMessage("Deseja sair e descartar as alterações?")
+                            .setMessage("Deseja descartar as alterações?")
                             .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
