@@ -11,6 +11,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
         return new TarefaAdapter.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClicked(final int position) {
-                CharSequence opcoes[] = new CharSequence[] {"Visualizar", "Alterar", "Deletar"};
+                CharSequence opcoes[] = new CharSequence[] {"Visualizar", "Alterar", "Deletar", "Concluir"};
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Opções da tarefa");
@@ -141,6 +142,19 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
                                                 atualizaLista();
                                             }
                                         }).setNegativeButton("Não", null).show();
+                                break;
+                            case 3:
+                                Tarefa tarefa = new Tarefa();
+                                tarefa.setId(tarefaList.get(position).getId());
+                                tarefa.setTarefa(tarefaList.get(position).getTarefa());
+                                tarefa.setHora(tarefaList.get(position).getHora());
+                                tarefa.setData(tarefaList.get(position).getData());
+                                tarefa.setAtiva(false);
+                                tarefa.setHoraConclusao(tarefaList.get(position).getHoraConclusao());
+                                tarefa.setDataConclusao(tarefaList.get(position).getDataConclusao());
+
+                                Log.d(TAG, tarefa.toString());
+
                                 break;
                         }
 
