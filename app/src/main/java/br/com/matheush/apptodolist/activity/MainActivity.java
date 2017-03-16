@@ -22,6 +22,9 @@ import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -83,8 +86,10 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
     public void atualizaLista() {
         //RealmResults<Tarefa> tarefas = MyApplication.REALM.where(Tarefa.class).findAllSorted("id", Sort.DESCENDING);
         tarefaList.clear();
-        tarefaList.addAll(new TarefaDao().getObjetos());
+        tarefaList.addAll(new TarefaDao().getObjetosAtivos());
         tarefaAdapter.notifyDataSetChanged();
+
+        Log.d(TAG, "Lista Tarefas: " + tarefaList.toString());
     }
 
     @Override
@@ -144,17 +149,28 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
                                         }).setNegativeButton("Não", null).show();
                                 break;
                             case 3:
+                                SimpleDateFormat horaFormat = new SimpleDateFormat("HH:mm");
+                                SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy");
+                                Calendar calendar = Calendar.getInstance();
+                                Date dataAtual = calendar.getTime();
+
+                                String horaAtualString = horaFormat.format(dataAtual);
+                                String dataAtualString = dataFormat.format(dataAtual);
+
                                 Tarefa tarefa = new Tarefa();
                                 tarefa.setId(tarefaList.get(position).getId());
                                 tarefa.setTarefa(tarefaList.get(position).getTarefa());
                                 tarefa.setHora(tarefaList.get(position).getHora());
                                 tarefa.setData(tarefaList.get(position).getData());
                                 tarefa.setAtiva(false);
-                                tarefa.setHoraConclusao(tarefaList.get(position).getHoraConclusao());
-                                tarefa.setDataConclusao(tarefaList.get(position).getDataConclusao());
+                                tarefa.setHoraConclusao(horaAtualString);
+                                tarefa.setDataConclusao(dataAtualString);
 
-                                Log.d(TAG, tarefa.toString());
+                                new TarefaDao().atualizaObjeto(tarefa);
 
+                                Toast.makeText(getApplicationContext(), "Tarefa concluída com sucesso!", Toast.LENGTH_SHORT).show();
+
+                                atualizaLista();
                                 break;
                         }
 

@@ -9,8 +9,9 @@
     <!-- Menus -->
     <string name="action_excluir_todos">Excluir todos</string>
     <string name="action_editar_tarefa">Editar tarefa</string>
-    <string name="action_excluir_tarefa">Excluir tarefa</string>
+    <string name="action_excluir_tarefa">Excluir</string>
     <string name="action_salvar_tarefa">Salvar tarefa</string>
+    <string name="action_concluir_tarefa">Concluir tarefa</string>
 
     <!-- Outros Textos -->
     <string name="tarefa_title">Tarefa</string>

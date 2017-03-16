@@ -12,7 +12,8 @@ public interface IDao<T extends RealmModel> {
     public void deleteObjeto(T objeto);
     public void deleteObjetos();
     public void atualizaObjeto(T objeto);
-    public RealmResults<T> getObjetos();
+    public RealmResults<T> getObjetosAtivos();
+    public RealmResults<T> getObjetosFinalizados();
     public T getObjeto(int id);
     public int idGenerator(Class classe, String campo);
 }

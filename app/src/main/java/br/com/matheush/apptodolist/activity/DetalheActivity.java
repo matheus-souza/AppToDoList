@@ -12,6 +12,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import br.com.matheush.apptodolist.R;
 import br.com.matheush.apptodolist.dao.TarefaDao;
 import br.com.matheush.apptodolist.model.Tarefa;
@@ -98,6 +102,30 @@ public class DetalheActivity extends AppCompatActivity {
             case R.id.action_excluir_item:
                 new TarefaDao().deleteObjeto(tarefa);
                 Toast.makeText(getApplicationContext(), "Tarefa excluida com sucesso!", Toast.LENGTH_SHORT).show();
+                finish();
+                return true;
+            case R.id.action_concluir_item:
+                SimpleDateFormat horaFormat = new SimpleDateFormat("HH:mm");
+                SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Calendar calendar = Calendar.getInstance();
+                Date dataAtual = calendar.getTime();
+
+                String horaAtualString = horaFormat.format(dataAtual);
+                String dataAtualString = dataFormat.format(dataAtual);
+
+                Tarefa tarefaEditada = new Tarefa();
+                tarefaEditada.setId(tarefa.getId());
+                tarefaEditada.setTarefa(tarefa.getTarefa());
+                tarefaEditada.setHora(tarefa.getHora());
+                tarefaEditada.setData(tarefa.getData());
+                tarefaEditada.setAtiva(false);
+                tarefaEditada.setHoraConclusao(horaAtualString);
+                tarefaEditada.setDataConclusao(dataAtualString);
+
+                new TarefaDao().atualizaObjeto(tarefaEditada);
+
+                Toast.makeText(getApplicationContext(), "Tarefa concluída com sucesso!", Toast.LENGTH_SHORT).show();
+
                 finish();
                 return true;
         }

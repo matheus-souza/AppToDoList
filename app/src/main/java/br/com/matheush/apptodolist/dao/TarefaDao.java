@@ -68,11 +68,16 @@ public class TarefaDao implements IDao<Tarefa> {
     }
 
     @Override
-    public RealmResults<Tarefa> getObjetos() {
+    public RealmResults<Tarefa> getObjetosAtivos() {
         //RealmResults<Tarefa> results = realm.where(Tarefa.class).findAllSorted("id", Sort.DESCENDING);
-        return realm.where(Tarefa.class).findAllSorted("id", Sort.DESCENDING);
+        return realm.where(Tarefa.class).equalTo("ativa", true).findAllSorted("id", Sort.DESCENDING);
     }
 
+    @Override
+    public RealmResults<Tarefa> getObjetosFinalizados() {
+        return realm.where(Tarefa.class).equalTo("ativa", false).findAllSorted("id", Sort.DESCENDING);
+    }
+    
     @Override
     public Tarefa getObjeto(int id) {
         return realm.where(Tarefa.class).equalTo("id", id).findFirst();

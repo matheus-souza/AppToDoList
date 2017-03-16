@@ -11,9 +11,16 @@
         app:showAsAction="always|collapseActionView" />
 
     <item
+        android:id="@+id/action_concluir_item"
+        android:icon="@drawable/ic_conclude"
+        android:orderInCategory="100"
+        android:title="@string/action_editar_tarefa"
+        app:showAsAction="always|collapseActionView" />
+
+    <item
         android:id="@+id/action_excluir_item"
         android:icon="@drawable/ic_delete"
         android:orderInCategory="100"
         android:title="@string/action_excluir_tarefa"
-        app:showAsAction="always|collapseActionView" />
+        app:showAsAction="never" />
 </menu>
