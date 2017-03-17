@@ -85,6 +85,13 @@ public class DetalheActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_detalhe, menu);
+        if (!tarefa.isAtiva()) {
+            menu.removeItem(R.id.action_editar_item);
+            menu.removeItem(R.id.action_concluir_item);
+
+            MenuItem item = menu.findItem(R.id.action_excluir_item);
+            item.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        }
         return true;
     }
 
