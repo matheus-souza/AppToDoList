@@ -58,6 +58,30 @@ public class TarefaDao implements IDao<Tarefa> {
     }
 
     @Override
+    public void deleteObjetosAtivos() {
+        final RealmResults<Tarefa> results = realm.where(Tarefa.class).equalTo("ativa", true).findAll();
+
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                results.deleteAllFromRealm();
+            }
+        });
+    }
+
+    @Override
+    public void deleteObjetosConcluidos() {
+        final RealmResults<Tarefa> results = realm.where(Tarefa.class).equalTo("ativa", false).findAll();
+
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                results.deleteAllFromRealm();
+            }
+        });
+    }
+
+    @Override
     public void atualizaObjeto(final Tarefa objeto) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override

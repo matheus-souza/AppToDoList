@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -144,10 +145,21 @@ public class ConcluidasActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_concluidas, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                return true;
+            case R.id.action_excluir_concluidas:
+                new TarefaDao().deleteObjetosConcluidos();
+                Toast.makeText(getApplicationContext(), "Todas as tarefas concluidas exluidas!", Toast.LENGTH_SHORT).show();
+                atualizaLista();
                 return true;
         }
 

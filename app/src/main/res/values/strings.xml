@@ -20,4 +20,6 @@
     <string name="data_hora_titulo">Data e Hora</string>
     <string name="nao_definida">Não definida</string>
     <string name="conclusao_titulo">Conclusão</string>
+    <string name="action_excluir_ativos">Excluir ativas</string>
+    <string name="action_excluir_concluidas">Excluir concluidas</string>
 </resources>

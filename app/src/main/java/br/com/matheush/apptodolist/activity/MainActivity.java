@@ -198,8 +198,14 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
 
         //noinspection SimplifiableIfStatement
         switch (id) {
+            case R.id.action_excluir_ativos:
+                new TarefaDao().deleteObjetosAtivos();
+                Toast.makeText(getApplicationContext(), "Todas as tarefas exluidas!", Toast.LENGTH_SHORT).show();
+                atualizaLista();
+                return true;
             case R.id.action_excluir_todos:
                 new TarefaDao().deleteObjetos();
+                Toast.makeText(getApplicationContext(), "Todas as tarefas ativas exluidas!", Toast.LENGTH_SHORT).show();
                 atualizaLista();
                 return true;
             case R.id.action_exibir_concluidas:

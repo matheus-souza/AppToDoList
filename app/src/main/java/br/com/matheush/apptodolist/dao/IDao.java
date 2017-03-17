@@ -11,6 +11,8 @@ public interface IDao<T extends RealmModel> {
     public void setObjeto(T objeto);
     public void deleteObjeto(T objeto);
     public void deleteObjetos();
+    public void deleteObjetosAtivos();
+    public void deleteObjetosConcluidos();
     public void atualizaObjeto(T objeto);
     public RealmResults<T> getObjetosAtivos();
     public RealmResults<T> getObjetosFinalizados();
