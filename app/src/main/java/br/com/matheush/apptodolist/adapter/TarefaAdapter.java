@@ -52,10 +52,14 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
 
         holder.tvTarefa.setText(t.getTarefa());
 
-        if (!t.getData().equals("Não definida") && !t.getHora().equals("Não definida")) {
-            holder.tvDataHora.setText(t.getData() + " às " + t.getHora());
+        if (t.isAtiva()) {
+            if (!t.getData().equals("Não definida") && !t.getHora().equals("Não definida")) {
+                holder.tvDataHora.setText(t.getData() + " às " + t.getHora());
+            } else {
+                holder.tvDataHora.setText("");
+            }
         } else {
-            holder.tvDataHora.setText("");
+            holder.tvDataHora.setText("Concluida " + t.getDataConclusao() + " às " + t.getHoraConclusao());
         }
 
         //Click
