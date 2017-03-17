@@ -197,10 +197,14 @@ public class MainActivity extends AppCompatActivity implements Validator.Validat
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_excluir_todos) {
-            new TarefaDao().deleteObjetos();
-            atualizaLista();
-            return true;
+        switch (id) {
+            case R.id.action_excluir_todos:
+                new TarefaDao().deleteObjetos();
+                atualizaLista();
+                return true;
+            case R.id.action_exibir_concluidas:
+                startActivity(new Intent(MainActivity.this, ConcluidasActivity.class));
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

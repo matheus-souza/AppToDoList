@@ -7,4 +7,10 @@
         android:orderInCategory="100"
         android:title="@string/action_excluir_todos"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_exibir_concluidas"
+        android:orderInCategory="100"
+        android:title="@string/action_exibir_concluidas"
+        app:showAsAction="never" />
 </menu>

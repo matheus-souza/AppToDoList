@@ -26,6 +26,10 @@
         <activity
             android:name=".activity.EdicaoActivity"
             android:label="@string/title_activity_edicao"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ConcluidasActivity"
+            android:label="@string/title_activity_concluidas"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -4,6 +4,7 @@
     <!-- Activity Titles -->
     <string name="title_activity_detalhe">Detalhes</string>
     <string name="title_activity_edicao">Editar tarefa</string>
+    <string name="title_activity_concluidas">Concluidas</string>
 
 
     <!-- Menus -->
@@ -12,6 +13,7 @@
     <string name="action_excluir_tarefa">Excluir</string>
     <string name="action_salvar_tarefa">Salvar tarefa</string>
     <string name="action_concluir_tarefa">Concluir tarefa</string>
+    <string name="action_exibir_concluidas">Tarefas concluidas</string>
 
     <!-- Outros Textos -->
     <string name="tarefa_title">Tarefa</string>
