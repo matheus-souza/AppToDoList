@@ -158,7 +158,8 @@ public class ConcluidasActivity extends AppCompatActivity {
                 return true;
             case R.id.action_excluir_concluidas:
                 new TarefaDao().deleteObjetosConcluidos();
-                Toast.makeText(getApplicationContext(), "Todas as tarefas concluidas exluidas!", Toast.LENGTH_SHORT).show();
+                if (concluidasList.size() > 0)
+                    Toast.makeText(getApplicationContext(), "Todas as tarefas concluidas exluidas!", Toast.LENGTH_SHORT).show();
                 atualizaLista();
                 return true;
         }
